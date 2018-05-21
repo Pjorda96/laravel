@@ -43,9 +43,13 @@ Route::get('usuarios/nuevo', function () {
 
 Route::get('saludo/{name}/{nickname?}', function ($name, $nickname=null) {
     //nickname? significa que es opcional
+
+    //para poner la primera letra del nombre en mayus
+    $name = ucfirst($name);
+
     if ($nickname){
         return "Bienvenido {$name}, tu apodo es {$nickname}";
     } else {
-        return "Bienvenido {$name}, no tienes apodo";
+        return "Bienvenido {$name}";
     }
 });
