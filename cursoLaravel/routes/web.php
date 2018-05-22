@@ -16,11 +16,11 @@
 });*/
 
 Route::get('/', function () {
-    return 'Home';
+    return view('welcome');
 });
 
 Route::get('Pablo', function () {
-    return 'Home';
+    return 'Hola Pablo';
 });
 
 Route::get('usuarios', function () {
