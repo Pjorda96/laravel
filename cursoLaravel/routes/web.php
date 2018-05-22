@@ -33,19 +33,7 @@ Route::get('/usuarios/detalles', function () {
 Route::get('/usuarios/{id}', 'UserController@show')
     ->where('id', '[0-9]+'); //where('id', '\d+'); d para numeros; w para letras y numeros
 
-Route::get('/usuarios/nuevo', function () {
-    return 'Crear nuevo usuario';
-});
+Route::get('/usuarios/nuevo', 'UserController@create');
 
-Route::get('/saludo/{name}/{nickname?}', function ($name, $nickname=null) {
+Route::get('/saludo/{name}/{nickname?}', 'WelcomeUserController');
     //nickname? significa que es opcional
-
-    //para poner la primera letra del nombre en mayus
-    $name = ucfirst($name);
-
-    if ($nickname){
-        return "Bienvenido {$name}, tu apodo es {$nickname}";
-    } else {
-        return "Bienvenido {$name}";
-    }
-});

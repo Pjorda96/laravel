@@ -16,4 +16,9 @@ class UserController extends Controller
         return "Mostrando detalle del usuario: {$id}";
         //escribir /id=5 despues de la ruta
     }
+
+    public function create()
+    {
+        return 'Crear nuevo usuario';
+    }
 }
