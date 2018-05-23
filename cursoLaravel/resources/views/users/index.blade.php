@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-    <meta charset="utf-8">
-    <title>Listado de usuarios - Pablo</title>
-</head>
-<body>
+@extends('layout')
+
+@section('title', "Usuario {$id}")
+
+@section('content')
     <!--<h1>< php //e($title) ?></h1>-->
     <h1>{{ $title }}</h1>
-
-    <hr>
 
     <!--@//if (!empty($users))
         <ul>
@@ -44,15 +40,17 @@
     @//endempty-->
 
     <ul>
-        @forelse ($users as $user)
+    @forelse ($users as $user)
         <!--para escapar el codigo html-->
             <li>{{ $user }}</li>
         @empty
             <li>No hay usuarios registrados.</li>
         @endforelse
     </ul>
+@endsection
 
-    {{ time() }}
+@section('sidebar')
+    @parent
 
-</body>
-</html>
+    <h2>Barra lateral personalizada</h2>
+@endsection

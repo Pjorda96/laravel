@@ -29,12 +29,14 @@ class UserController extends Controller
             ->with('users', $users)
             ->with('title', 'Listado de usuarios');*/
 
-        return view('users', compact('title', 'users'));
+        return view('users.index', compact('title', 'users'));
     }
 
     public function show($id)
     {
-        return "Mostrando detalle del usuario: {$id}";
+        return view('users.show', compact('id'));
+
+        //return "Mostrando detalle del usuario: {$id}";
         //escribir /id=5 despues de la ruta
     }
 
