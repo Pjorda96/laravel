@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title', "Usuario {$id}")
+@section('title', "Usuario")
 
 @section('content')
     <!--<h1>< php //e($title) ?></h1>-->
