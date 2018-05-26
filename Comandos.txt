@@ -1,0 +1,7 @@
+alias t=vendor/bin/phpunit
+
+php artisan migrate
+php artisan:reset
+php artisan:refresh
+php artisan make:migration add_profession_to_users
+php artisan migrate:rollback
