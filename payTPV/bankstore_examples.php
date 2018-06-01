@@ -7,7 +7,7 @@
  *  $terminal        = Número de terminal
  *
  */
-include("class/paytpv_bankstore.php");
+include("paytpv_bankstore.php");
 $merchantCode   = "";
 $password       = "";
 $terminal       = "";
