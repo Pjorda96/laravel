@@ -42,7 +42,7 @@
     <ul>
     @forelse ($users as $user)
         <!--para escapar el codigo html-->
-            <li>{{ $user }}</li>
+            <li>{{ $user->name }}</li>
         @empty
             <li>No hay usuarios registrados.</li>
         @endforelse
