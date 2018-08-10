@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
         //$professions = DB::select('SELECT id FROM professions WHERE title = ?', ['Desarrollador back-end']);
 
         $professionId = Profession::where('title', 'Desarrollador back-end')->value('id');
+        /*$professionId = DB::table('professions')->whereTitle('Desarrollador back-end')->value('id');*/
 
         factory(User::class)->create([
             'name' => 'Duilio Palacios',
