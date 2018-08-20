@@ -49,6 +49,12 @@ class UsersModuleTest extends TestCase
             ->assertSee('Duilio Palacios');
     }
 
+    function it_displays_a_404_error_if_the_user_is_not_found()
+    {
+        $this->get('/usuarios/999')
+        ->assertStatus(404)
+        ->assertSee('Página no encontrada');
+    }
 
     /** @test */
     function it_loads_the_new_users_page()
