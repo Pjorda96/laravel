@@ -3,8 +3,8 @@
 namespace Tests\Feature;
 
 use App\User;
-use Tests\TestCase;
 use Illuminate\Support\Facades\DB;
+use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UsersModuleTest extends TestCase
@@ -15,7 +15,7 @@ class UsersModuleTest extends TestCase
     function it_shows_the_users_list()
     {
         factory(User::class)->create([
-            'name' => 'Joel',
+            'name' => 'Joel'
         ]);
 
         factory(User::class)->create([
@@ -36,19 +36,20 @@ class UsersModuleTest extends TestCase
             ->assertStatus(200)
             ->assertSee('No hay usuarios registrados.');
     }
-    
+
     /** @test */
     function it_displays_the_users_details()
     {
         $user = factory(User::class)->create([
-            'name' => 'Duilio Palacios',
+            'name' => 'Duilio Palacios'
         ]);
 
-        $this->get('/usuarios/'.$user->id) //usuarios/5
-            ->assertStatus(200)
+        $this->get('/usuarios/'.$user->id) // usuarios/5
+        ->assertStatus(200)
             ->assertSee('Duilio Palacios');
     }
-    
+
+
     /** @test */
     function it_loads_the_new_users_page()
     {
