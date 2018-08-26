@@ -7,8 +7,8 @@
 
     <p>Nombre del usuario: {{ $user->name }}</p>
     <p>Correo electrónico: {{ $user->email  }}</p>
-    
+
     <p>
-        <a href="{{ url('/usuarios/') }}">Volver</a>
+        <a href="{{ route('users.index') }}">Volver</a>
     </p>
 @endsection

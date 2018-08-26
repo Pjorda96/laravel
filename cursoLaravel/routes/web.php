@@ -5,7 +5,7 @@ Route::get('/', function () {
 });
 
 Route::get('/usuarios', 'UserController@index')
-    ->name('users');
+    ->name('users.index');
 
 Route::get('/usuarios/{user}', 'UserController@show')
     ->where('user', '[0-9]+')
@@ -13,5 +13,7 @@ Route::get('/usuarios/{user}', 'UserController@show')
 
 Route::get('/usuarios/nuevo', 'UserController@create')
     ->name('users.create');
+
+Route::post('/usuarios/crear', 'UserController@store');
 
 Route::get('/saludo/{name}/{nickname?}', 'WelcomeUserController');
