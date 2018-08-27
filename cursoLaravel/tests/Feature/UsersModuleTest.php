@@ -101,4 +101,72 @@ class UsersModuleTest extends TestCase
 //            'email' => 'duilio@styde.net',
 //        ]);
     }
+
+    /** @test */
+    function the_email_is_required()
+    {
+        factory(User::class)->create([
+            'email' => 'duilio@styde.net'
+        ]);
+
+        $this->from('usuarios/nuevo')
+            ->post('/usuarios/', [
+                'name' => 'Duilio',
+                'email' => '',
+                'password' => '123456'
+            ])
+            ->assertRedirect('usuarios/nuevo')
+            ->assertSessionHasErrors(['email']);
+
+        $this->assertEquals(0, User::count());
+    }
+
+    /** @test */
+    function the_email_must_be_unique()
+    {
+        factory(User::class)->create([
+            'email' => 'duilio@styde.net'
+        ]);
+
+        $this->from('usuarios/nuevo')
+            ->post('/usuarios/', [
+                'name' => 'Duilio',
+                'email' => 'duilio@styde.net',
+                'password' => '123456'
+            ])
+            ->assertRedirect('usuarios/nuevo')
+            ->assertSessionHasErrors(['email']);
+
+        $this->assertEquals(1, User::count());
+    }
+
+    /** @test */
+    function the_email_must_be_valid()
+    {
+        $this->from('usuarios/nuevo')
+            ->post('/usuarios/', [
+                'name' => 'Duilio',
+                'email' => 'correo-no-valido',
+                'password' => '123456'
+            ])
+            ->assertRedirect('usuarios/nuevo')
+            ->assertSessionHasErrors(['email']);
+
+        $this->assertEquals(0, User::count());
+    }
+
+    /** @test */
+    function the_password_is_required()
+    {
+        $this->from('usuarios/nuevo')
+            ->post('/usuarios/', [
+                'name' => 'Duilio',
+                'email' => 'duilio@styde.net',
+                'password' => ''
+            ])
+            ->assertRedirect('usuarios/nuevo')
+            ->assertSessionHasErrors(['password']);
+
+        $this->assertEquals(0, User::count());
+    }
 }
