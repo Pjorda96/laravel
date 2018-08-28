@@ -44,7 +44,7 @@ class UsersModuleTest extends TestCase
             'name' => 'Duilio Palacios'
         ]);
 
-        $this->get('/usuarios/'.$user->id) // usuarios/5
+        $this->get("/usuarios/{$user->id}") // usuarios/5
             ->assertStatus(200)
             ->assertSee('Duilio Palacios');
     }
@@ -182,5 +182,25 @@ class UsersModuleTest extends TestCase
             ->assertViewHas('user', function($viewUser) use ($user) {
                 return $viewUser->id === $user->id;
             });
+    }
+
+    /** @test */
+    function it_updates_a_user()
+    {
+        $user = factory(User::class)->create();
+
+        $this->withoutExceptionHandling();
+
+        $this->put("/usuarios/{$user->id}", [
+            'name' => 'Duilio',
+            'email' => 'duilio@styde.net',
+            'password' => '123456'
+        ])->assertRedirect("/usuarios/{$user->id}");
+
+        $this->assertCredentials([
+            'name' => 'Duilio',
+            'email' => 'duilio@styde.net',
+            'password' => '123456',
+        ]);
     }
 }
