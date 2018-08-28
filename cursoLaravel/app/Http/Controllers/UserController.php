@@ -69,7 +69,7 @@ class UserController extends Controller
             'password' => '',
         ]);
 
-        if($data['password'] != null) {
+        if($data['password'] !== null) {
             $data['password']=bcrypt($data['password']);
         } else {
             unset($data['password']);
@@ -78,5 +78,12 @@ class UserController extends Controller
         $user->update($data);
 
         return redirect()->route('users.show', ['user' => $user]);
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+        return redirect()->route('users.index');
     }
 }
