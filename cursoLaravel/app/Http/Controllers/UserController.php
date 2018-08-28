@@ -39,8 +39,7 @@ class UserController extends Controller
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => 'required',
         ], [
-            'name.required' => 'El campo nombre es obligatorio',
-            'email.required' => 'El campo email es obligatorio',
+            'name.required' => 'El campo nombre es obligatorio'
         ]);
 
         User::create([
@@ -59,7 +58,11 @@ class UserController extends Controller
 
     public function update(User $user)
     {
-        $data = request()->all();
+        $data = request()->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
         $data['password']=bcrypt($data['password']);
 
